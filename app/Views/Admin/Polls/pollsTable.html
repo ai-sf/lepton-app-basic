@@ -1,0 +1,93 @@
+<div class="table-responsive-lg">
+  <table class="table table-hover  align-middle">
+    <thead>
+      <tr>
+        <th>ID</td>
+        <th>Nome</th>
+          <th>Codice</th>
+        <th>Data di creazione</th>
+        <th>Attivo</th>
+        <th>Risultati</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for poll in polls %}
+      <tr>
+        <td>{{poll.id}}</td>
+        <td>{{poll.title}}</td>
+        <td>{{poll.access_code}}</td>
+        <td>{{poll.timestamp}}</td>
+        <td>
+          <div class="form-check form-switch">
+            <form id="form-active{{poll.id}}" hx-post="{{"admin/polls/activate" | url}}"
+              hx-trigger="change from:find input"
+              hx-target="#toast-body">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="active"
+                role="switch"
+                {% if poll.active == 1%} checked {% endif %}
+              >
+              <input type="hidden" name="id" value="{{poll.id}}">
+            </form>
+          </div>
+        </td>
+
+        <td>
+          <div class="form-check form-switch">
+            <form id="form-showresults{{poll.id}}" hx-post="{{"admin/polls/showResults" | url}}"
+              hx-trigger="change from:find input"
+              hx-target="#toast-body">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="show_results"
+                role="switch"
+                {% if poll.show_results == 1%} checked {% endif %}
+              >
+              <input type="hidden" name="id" value="{{poll.id}}">
+            </form>
+          </div>
+        </td>
+
+        <td>
+          <a href="{{"admin/polls/results/" | append: poll.id | url}}" class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-graph-up-arrow"></i>
+            <span class="ms-2">Risultati</span>
+          </a>
+        </td>
+        <td>
+          <form id="form-project-{{poll.id}}"
+            hx-post="{{"admin/polls/toggleProject" | url}}"
+            hx-trigger="change from:find input"
+            hx-target="#toast-body">
+            <input type="checkbox" class="btn-check" name="project" id="project-{{poll.id}}" autocomplete="off"
+              {% if poll.project == 1 %} checked {% endif %} >
+            <label class="btn btn-sm btn-outline-info" for="project-{{poll.id}}"><i class="bi bi-projector-fill me-2"></i>Proietta</label><br>
+            <input type="hidden" name="id" value="{{poll.id}}">
+          </form>
+
+        </td>
+        <td>
+          <a href="{{"admin/polls/edit/" | append: poll.id | url}}" class="btn btn-outline-primary btn-sm me-3"><i class="bi bi-pencil"></i></a>
+          <a
+            class="btn btn-outline-danger btn-sm"
+            hx-post="{{"admin/polls/delete" | url}}"
+            hx-vals='{"id": "{{poll.id}}" }'
+            hx-target="closest table"
+            hx-confirm="Eliminare la votazione?"><i class="bi bi-trash3"></i></a>
+
+        </td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+  {% if is_update %}
+  <div id="toast-body" hx-swap-oob="true" class="toast-body">{{message}}</div>
+  {% endif %}
