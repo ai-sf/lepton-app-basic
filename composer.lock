@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80af9acc7f192ce894b44593cf5d329b",
+    "content-hash": "1a43ad4d3428790ca665798c496d4a99",
     "packages": [
         {
             "name": "aisf/lepton",
-            "version": "dev-main",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ai-sf/lepton.git",
+                "reference": "cfd31fa0bfa449c46780751be310b3030f875d28"
+            },
             "dist": {
-                "type": "path",
-                "url": "/srv/http/AISF/lepton",
-                "reference": "657ded189738b254a20c811a074f1c51ca4c6741"
+                "type": "zip",
+                "url": "https://api.github.com/repos/ai-sf/lepton/zipball/cfd31fa0bfa449c46780751be310b3030f875d28",
+                "reference": "cfd31fa0bfa449c46780751be310b3030f875d28",
+                "shasum": ""
             },
             "require": {
                 "filp/whoops": "^2.14",
@@ -26,13 +32,9 @@
                     "Lepton\\": "src/"
                 }
             },
-            "scripts": {
-                "post-install-cmd": [
-                    "php -r ' echo \"Hello world \" ' "
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GNU-GPLv3"
+                "GPL-3.0-or-later"
             ],
             "authors": [
                 {
@@ -41,10 +43,11 @@
                 }
             ],
             "description": "AISF MVC Php Framework",
-            "transport-options": {
-                "symlink": true,
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/ai-sf/lepton/issues",
+                "source": "https://github.com/ai-sf/lepton/tree/v0.1.0"
+            },
+            "time": "2023-08-02T09:06:44+00:00"
         },
         {
             "name": "filp/whoops",
@@ -400,12 +403,12 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "aisf/lepton": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=8.1"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
 }
