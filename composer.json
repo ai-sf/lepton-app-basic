@@ -15,7 +15,8 @@
     ],
     "require": {
         "aisf/lepton": "@dev",
-        "liquid/liquid": "^1.4"
+        "liquid/liquid": "^1.4",
+        "scssphp/scssphp": "^1.11"
     },
     "config": {
         "allow-plugins": {
@@ -32,7 +33,7 @@
 
     "repositories": [{
         "type": "path",
-        "url": "../lepton",
+        "url": "/srv/http/AISF/lepton",
         "options": {
             "symlink": true
         }
